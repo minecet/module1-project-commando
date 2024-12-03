@@ -21,9 +21,9 @@ body {
   padding: 20px 0px;
   overflow: hidden;
   position: relative;
-  /*background-image: url(../images/road.png);*/
+  background-image: url(../images/background.png);
   background-size: cover;
-  animation: slide 5s linear infinite;
+  /*animation: slide 5s linear infinite;*/
 }
 
 @keyframes slide {

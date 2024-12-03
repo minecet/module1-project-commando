@@ -38,8 +38,8 @@ class Enemy {
     //this.element.style.borderRadius = "50%";
     //this.element.style.backgroundColor = "tomato";
     this.bullet.style.position = 'absolute';
-    this.bullet.style.width = '10px';
-    this.bullet.style.height = '10px';
+    this.bullet.style.width = '30px';
+    this.bullet.style.height = '30px';
     this.bullet.style.display = 'none';
     this.bullet.style.left = `${this.positionX}px`
     this.bullet.style.top = `${this.positionY}px`
@@ -141,7 +141,7 @@ class Enemy {
         this.bullet.style.top = `${newPosY}px`;
     
         // Debugging
-        console.log(`Bullet position: (${newPosX}, ${newPosY})`);
+       // console.log(`Bullet position: (${newPosX}, ${newPosY})`);
     
         // Stop bullet if out of bounds
         if (
@@ -155,5 +155,21 @@ class Enemy {
         }
       }, 16); // Runs approximately 60 times per second
     }
+    getEnemyPosition() {
+      return {
+        x: parseFloat(this.element.style.left), // Get current left position
+        y: parseFloat(this.element.style.top)  // Get current top position
+      };
+    }
+    didCollide(Player) {
+      const enemyRect = this.element.getBoundingClientRect()
+      const playerRect = Player.bullet.getBoundingClientRect()
+  
+      return (
+        enemyRect.left < playerRect.right &&
+        enemyRect.right > playerRect.left &&
+        enemyRect.top < playerRect.bottom &&
+        enemyRect.bottom > playerRect.top
+      )
+    }
   }
-

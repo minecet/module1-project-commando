@@ -1,6 +1,6 @@
 const GRASS_WIDTH = 50
 const gameScreenWidth = 1000;
-const gameScreenHeight = 800;
+const gameScreenHeight = 1000;
 
 class Game {
   constructor() {
@@ -37,55 +37,8 @@ class Game {
    // this.gameLoopEnemy()
   }
 
-
-  /*gameLoopPlayer() {
-    this.gameLoopPlayerId = setInterval(() => {
-      this.currentFrame += 1
-      this.scoreElement.innerText = this.score
-      this.livesElement.innerText = this.lives
-
-      if (this.currentFrame % 60 === 0 && this.enemies.length <5) {
-        this.enemies.push(new Enemy(this.gameScreen))
-      
-      }
-      this.player.move()
-
-      if (this.isGameOver) {
-        clearInterval(this.gameLoopPlayerId)
-        this.player.element.remove()
-        this.enemies.forEach(currentEnemey => {
-          currentEnemey.element.remove()
-        })
-        this.gameScreen.style.display = 'none'
-        this.endScreen.style.display = 'block'
-      }
-    }, 1000 / 60)
-  }
-  gameLoopEnemy(){
-    this.gameLoopEnemyId = setInterval( () => {
-      const nextEnemies = []
-      this.enemies.forEach(currentEnemey => {
-        currentEnemey.move()
-        //const currentEnemyBullet = new Bullet();
-        currentEnemy.shoot(this.player);
-        if (this.player.didCollide(currentEnemy)) {
-          //currentEnemey.element.remove()
-          this.lives -= 1
-          if (this.lives < 0) {
-            this.isGameOver = true
-          }
-        }
-         else {
-          nextEnemies.push(currentEnemey)
-        }
-      })
-      this.enemies = nextEnemies;
-      if (this.isGameOver) {
-        clearInterval(this.gameLoopEnemyId);
-      }
-    }, 2000/60)
-  }
-}*/
+ // tried to separate player and enemy movements into separate intervals, didn't work
+ 
 gameLoopPlayer() {
   this.gameLoopPlayerId = setInterval(() => {
     this.currentFrame += 1;
@@ -96,7 +49,7 @@ gameLoopPlayer() {
     this.player.move();
 
     // Spawn enemies every 2 seconds (120 frames at 60 FPS)
-    if (this.currentFrame % 120 === 0) {
+    if (this.currentFrame % 120 === 0 && this.enemies.length < 3) {
       const newEnemy = new Enemy(this.gameScreen);
       this.enemies.push(newEnemy);
     }
@@ -108,7 +61,15 @@ gameLoopPlayer() {
         currentEnemy.move(); // Move enemy
        // this.player.updatePosition() // update player position
         currentEnemy.shootAtPlayer(this.player); // Shoot towards the player
-  
+        this.player.shootAtEnemy(currentEnemy); // shoot towrds the enemy)
+        if(currentEnemy.didCollide(this.player)){
+            currentEnemy.element.remove();
+            currentEnemy.bullet.style.display = 'none'; // Hide bullet
+
+            this.score += 20;
+            console.log(`Score updated: ${this.score}`);
+
+        }
       }
 
       // Check collision with player
