@@ -20,7 +20,7 @@ class Enemy {
     this.element = document.createElement('img')
     // enemy image and position
     this.numEnemies++;
-    this.element.src = '/images/enemy.png'
+    this.element.src = 'images/enemy.png'
     this.element.id = "enemy" + this.id;
     this.element.style.position = 'absolute'
     this.element.style.width = `${this.width}px`
