@@ -10,7 +10,7 @@ class Player {
     this.speed = 5
     this.element = document.createElement('img')
 
-    this.element.src = '../images/commando.png'
+    this.element.src = '/images/commando.png'
     this.element.style.position = 'absolute'
     this.element.style.width = `${this.width}px`
     this.element.style.height = `${this.height}px`
@@ -23,7 +23,7 @@ class Player {
     //this.bullet = document.createElement('img');
    // this.bullet.src = '../images/bullet.png';
    this.bullet = document.createElement('img');
-   this.bullet.src = '../images/bullet.png';
+   this.bullet.src = '/images/bullet.png';
    this.bullet.id= "bullet" + this.id;
     //this.element.style.borderRadius = "50%";
     //this.element.style.backgroundColor = "tomato";
@@ -124,7 +124,7 @@ class Player {
         this.bullet.style.display = 'none'; // Hide bullet
         clearInterval(intervalId);
       }
-    }, 16); // Runs approximately 60 times per second
+    }, 500/60); // Runs approximately 60 times per second
 
   }
 }
