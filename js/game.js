@@ -1,6 +1,6 @@
 const GRASS_WIDTH = 50
 const gameScreenWidth = 1000;
-const gameScreenHeight = 1000;
+const gameScreenHeight = 700;
 
 class Game {
   constructor() {
@@ -49,7 +49,7 @@ gameLoopPlayer() {
     this.player.move();
 
     // Spawn enemies every 2 seconds (120 frames at 60 FPS)
-    if (this.currentFrame % 120 === 0 && this.enemies.length < 3) {
+    if (this.currentFrame % 120 === 0 && this.enemies.length < 1) {
       const newEnemy = new Enemy(this.gameScreen);
       this.enemies.push(newEnemy);
     }
@@ -61,7 +61,7 @@ gameLoopPlayer() {
         currentEnemy.move(); // Move enemy
        // this.player.updatePosition() // update player position
         currentEnemy.shootAtPlayer(this.player); // Shoot towards the player
-        this.player.shootAtEnemy(currentEnemy); // shoot towrds the enemy)
+       /* this.player.shootAtEnemy(currentEnemy); // shoot towrds the enemy)
         if(currentEnemy.didCollide(this.player)){
             currentEnemy.element.remove();
             currentEnemy.bullet.style.display = 'none'; // Hide bullet
@@ -69,7 +69,7 @@ gameLoopPlayer() {
             this.score += 20;
             console.log(`Score updated: ${this.score}`);
 
-        }
+        }*/
       }
 
       // Check collision with player
@@ -82,6 +82,14 @@ gameLoopPlayer() {
         nextEnemies.push(currentEnemy); // Keep enemies that haven't collided
       }
     })
+    nextEnemies.forEach((enemy, index) => {
+      if (enemy.didCollide(this.player)) {
+        this.score += 10; // Increment score
+        enemy.element.remove(); // Remove enemy
+        this.enemies.splice(index, 1); // Remove from array
+        this.player.bullet.style.display = 'none'; // Hide bullet
+      }
+    });
           // Update remaining enemies
     this.enemies = nextEnemies;
 

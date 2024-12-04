@@ -81,29 +81,31 @@ class Player {
     )
   }
 
-  shootAtEnemy(Enemy) {
+  shootAtEnemy(directionX, directionY) {
     // if i didnt get the dom values, it was not possible to shoot on time at the player direction
-    const enemyPosition = Enemy.getEnemyPosition();
-    const enemyCenterX = enemyPosition.x + Enemy.width / 2; ;
-    const enemyCenterY = enemyPosition.y + Enemy.height / 2;;
-    
+   // const enemyPosition = Enemy.getEnemyPosition();
+    //const enemyCenterX = enemyPosition.x + Enemy.width / 2; ;
+    //const enemyCenterY = enemyPosition.y + Enemy.height / 2;;
+    if (this.bullet.style.display === 'block') return; // Prevent spamming
+
     // Initialize bullet position
     this.bullet.style.left = `${this.positionX + this.width / 2}px`;
     this.bullet.style.top = `${this.positionY + this.height / 2}px`;
     this.bullet.style.display = 'block';
   
-    const deltaX =  enemyCenterX - this.positionX;
-    const deltaY =  enemyCenterY - this.positionY;
-    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    //const deltaX =  enemyCenterX - this.positionX;
+    //const deltaY =  enemyCenterY - this.positionY;
+    //const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
   // finding the direction was difficult
-    const directionX = deltaX / distance;
-    const directionY = deltaY / distance;
-  
+    //const directionX = deltaX / distance;
+    //const directionY = deltaY / distance;
+    //const directionX = this.directionX;
+    //const directionY = this.directionY;
     const bulletSpeed = 5; // Adjust as needed
     const intervalId = setInterval(() => {
 
-      const bulletPosX = parseFloat(this.bullet.style.left) || this.positionX;
-      const bulletPosY = parseFloat(this.bullet.style.top) || this.positionY;
+      const bulletPosX = parseFloat(this.bullet.style.left) ;
+      const bulletPosY = parseFloat(this.bullet.style.top);
   
       const newPosX = bulletPosX + directionX * bulletSpeed;
       const newPosY = bulletPosY + directionY * bulletSpeed;
