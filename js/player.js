@@ -1,16 +1,16 @@
 class Player {
   constructor(gameScreen) {
     this.gameScreen = gameScreen
-    this.width = 40
-    this.height = 80
+    this.width = 60
+    this.height = 100
     this.positionX = gameScreen.clientWidth / 2 - this.width / 2
     this.positionY = gameScreen.clientHeight - this.height - 20
     this.directionX = 0
     this.directionY = 0
-    this.speed = 5
+    this.speed = 10
     this.element = document.createElement('img')
 
-    this.element.src = 'images/commando.png'
+    this.element.src = 'images/astronaut.png'
     this.element.style.position = 'absolute'
     this.element.style.width = `${this.width}px`
     this.element.style.height = `${this.height}px`
@@ -23,7 +23,7 @@ class Player {
     //this.bullet = document.createElement('img');
    // this.bullet.src = '../images/bullet.png';
    this.bullet = document.createElement('img');
-   this.bullet.src = 'images/bullet.png';
+   this.bullet.src = 'images/bomb_gray.png';
    this.bullet.id= "bullet" + this.id;
     //this.element.style.borderRadius = "50%";
     //this.element.style.backgroundColor = "tomato";
@@ -132,7 +132,7 @@ class Player {
         this.bullet.style.display = 'none'; // Hide bullet
         clearInterval(intervalId);
       }
-    }, 1000/60); // Runs approximately 60 times per second
+    }, 500/60); // Runs approximately 60 times per second
 
   }
 }

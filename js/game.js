@@ -1,6 +1,8 @@
 const GRASS_WIDTH = 50
 const gameScreenWidth = 1000;
 const gameScreenHeight = 700;
+//let randomXSpaceshipPosition;
+//const spaceshipWidth = 100; // Match the spaceship width
 
 class Game {
   constructor() {
@@ -28,7 +30,11 @@ class Game {
     this.gameIntro.style.display = 'none'
     this.endScreen1.style.display = 'none'
     this.endScreen2.style.display = 'none'
-
+    //const gameScreenWidth = this.gameScreen.clientWidth;
+    //randomXSpaceshipPosition = Math.floor(Math.random() * (gameScreenWidth));
+  
+    // Update the background-position style
+    //this.gameScreen.style.backgroundPosition = `${randomXSpaceshipPosition}px 0px, center`;
     this.gameScreen.style.display = 'block'
 
     this.gameScreen.style.width = `${this.width}px`
@@ -52,8 +58,10 @@ class Game {
  
 gameLoopPlayer() {
   this.gameLoopPlayerId = setInterval(() => {
+    //const finishLimitLeft = randomXSpaceshipPosition - spaceshipWidth/2;
+    //const finishLimitRight = randomXSpaceshipPosition + spaceshipWidth/2;
 
-    if(!this.Gamover && this.player.element.style.top == `0px` ){
+    if(!this.Gamover && this.player.element.style.top == `0px` && (this.player.element.style.left <= `250px` && this.player.element.style.left >= `150px` )){
       this.endGame();
       this.endScreen = document.getElementById('game-end-win');
       this.endScreen.style.display = 'block';
@@ -67,7 +75,7 @@ gameLoopPlayer() {
     this.player.move();
 
     // Spawn enemies every 2 seconds (120 frames at 60 FPS)
-    if (this.currentFrame % 120 === 0 && this.enemies.length < 2) {
+    if (this.currentFrame % 120 === 0) {
       const newEnemy = new Enemy(this.gameScreen);
       this.enemies.push(newEnemy);
     }
@@ -75,9 +83,9 @@ gameLoopPlayer() {
     // Handle enemies
    // const nextEnemies = [];
     for(let i = 0; i< this.enemies.length; i++){
-     // if(this.currentFrame % 120 === 0){
+      if(this.currentFrame % 120 === 0){
       this.enemies[i].move(); // Move enemy
-      // }
+      }
         // this.player.updatePosition() // update player position
         this.enemies[i].shootAtPlayer(this.player); // Shoot towards the player
          // Handle collision between enemy bullets and the player
@@ -134,6 +142,5 @@ gameLoopPlayer() {
   }, 1000 / 60); // Run at 60 FPS
   
 }
-
 
 }

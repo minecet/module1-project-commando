@@ -21,9 +21,12 @@ body {
   padding: 20px 0px;
   overflow: hidden;
   position: relative;
-  background-image: url(../images/background.png);
-  background-size: cover;
-  /*animation: slide 5s linear infinite;*/
+  background-image: 
+    url(../images/spaceship.png), /* Spaceship image */
+    url(../images/background.png); /* Main background image */
+  background-size: 100px 100px, cover; /* Size the spaceship and background */
+  background-position: 200px 0px, center; /* Position spaceship and center the background */
+  background-repeat: no-repeat, no-repeat; /* Prevent tiling for both images */
 }
 
 @keyframes slide {

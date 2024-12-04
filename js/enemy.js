@@ -4,8 +4,8 @@ class Enemy {
     this.id = Enemy.id++;
     this.numEnemies = 0;
     this.gameScreen = gameScreen
-    this.width = 40
-    this.height = 80
+    this.width = 60
+    this.height = 100
     let randomPositionX = 0;
     this.positionX =
       Math.round(Math.random() * (gameScreen.clientWidth - this.width - GRASS_WIDTH * 2)) +
@@ -14,13 +14,13 @@ class Enemy {
     GRASS_WIDTH
     this.positionBulletX = this.positionX;
     this.positionBulletY = this.positionY;
-    this.speed = 1
+    this.speed = 50
     this.directionX = 0;
     this.directionY = 0;
     this.element = document.createElement('img')
     // enemy image and position
     this.numEnemies++;
-    this.element.src = 'images/enemy.png'
+    this.element.src = 'images/alien.png'
     this.element.id = "enemy" + this.id;
     this.element.style.position = 'absolute'
     this.element.style.width = `${this.width}px`
@@ -33,7 +33,7 @@ class Enemy {
     //this.bullet = document.createElement('img');
    // this.bullet.src = '../images/bullet.png';
    this.bullet = document.createElement('img');
-   this.bullet.src = 'images/bullet.png';
+   this.bullet.src = 'images/bomb_green.png';
    this.bullet.id= "bullet" + this.id;
     //this.element.style.borderRadius = "50%";
     //this.element.style.backgroundColor = "tomato";
