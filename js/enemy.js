@@ -33,7 +33,7 @@ class Enemy {
     //this.bullet = document.createElement('img');
    // this.bullet.src = '../images/bullet.png';
    this.bullet = document.createElement('img');
-   this.bullet.src = '/images/bullet.png';
+   this.bullet.src = 'images/bullet.png';
    this.bullet.id= "bullet" + this.id;
     //this.element.style.borderRadius = "50%";
     //this.element.style.backgroundColor = "tomato";
