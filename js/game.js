@@ -61,37 +61,38 @@ gameLoopPlayer() {
         currentEnemy.move(); // Move enemy
        // this.player.updatePosition() // update player position
         currentEnemy.shootAtPlayer(this.player); // Shoot towards the player
-       /* this.player.shootAtEnemy(currentEnemy); // shoot towrds the enemy)
-        if(currentEnemy.didCollide(this.player)){
-            currentEnemy.element.remove();
-            currentEnemy.bullet.style.display = 'none'; // Hide bullet
 
-            this.score += 20;
-            console.log(`Score updated: ${this.score}`);
-
-        }*/
       }
 
-      // Check collision with player
-      if (this.player.didCollide(currentEnemy)) {
+      // Handle collision between enemy bullets and the player
+      if (currentEnemy.didCollide(this.player)) {
         this.lives -= 1;
+        console.log('Player hit!');
+
         if (this.lives <= 0) {
           this.isGameOver = true;
         }
-      } else {
+      } //else {
         nextEnemies.push(currentEnemy); // Keep enemies that haven't collided
-      }
+     // }
     })
-    nextEnemies.forEach((enemy, index) => {
-      if (enemy.didCollide(this.player)) {
-        this.score += 10; // Increment score
-        enemy.element.remove(); // Remove enemy
-        this.enemies.splice(index, 1); // Remove from array
-        this.player.bullet.style.display = 'none'; // Hide bullet
-      }
-    });
+
           // Update remaining enemies
     this.enemies = nextEnemies;
+
+      // Check if the player's bullet collided with an enemy
+
+    this.enemies.forEach((enemy, index) => {
+      if (this.player.didCollide(enemy)) {
+        // Collision detected: Handle removal and scoring
+        this.score += 50; // Increment score
+        enemy.element.remove(); // Remove enemy from DOM
+        this.enemies.splice(index, 1); // Remove enemy from array
+        this.player.bullet.style.display = 'none'; // Hide bullet
+        console.log('Enemy hit!');
+      }
+    });
+
 
     // Handle game over
     if (this.isGameOver) {

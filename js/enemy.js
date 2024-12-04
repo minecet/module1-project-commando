@@ -163,13 +163,13 @@ class Enemy {
     }
     didCollide(Player) {
       const enemyRect = this.element.getBoundingClientRect()
-      const playerRect = Player.bullet.getBoundingClientRect()
+      const bulletRect = Player.bullet.getBoundingClientRect()
       
       return (
-        enemyRect.left < playerRect.right &&
-        enemyRect.right > playerRect.left &&
-        enemyRect.top < playerRect.bottom &&
-        enemyRect.bottom > playerRect.top
+        bulletRect.left < enemyRect.right &&
+        bulletRect.right > enemyRect.left &&
+        bulletRect.top < enemyRect.bottom &&
+        bulletRect.bottom > enemyRect.top
       )
     }
   }
