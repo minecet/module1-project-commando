@@ -34,8 +34,15 @@ class Player {
     this.bullet.style.left = `${this.positionX}px`
     this.bullet.style.top = `${this.positionY}px`
     this.gameScreen.appendChild(this.bullet);
-  }
+    this.collisionCooldown = false;
 
+  }
+  startCollisionCooldown() {
+    this.collisionCooldown = true;
+    setTimeout(() => {
+      this.collisionCooldown = false;
+    }, 700); // Cooldown period in milliseconds
+  }
   updatePosition() {
     this.positionX += this.speed * this.directionX
     if (this.positionX < 0 + GRASS_WIDTH) {
@@ -70,13 +77,13 @@ class Player {
   
 
   didCollide(Enemy) {
-    const bulletRect = this.bullet.getBoundingClientRect()
+    const playerbulletRect = this.bullet.getBoundingClientRect()
     const EnemyRect = Enemy.element.getBoundingClientRect()
     return (
-      bulletRect.left < EnemyRect.right &&
-      bulletRect.right > EnemyRect.left &&
-      bulletRect.top < EnemyRect.bottom &&
-      bulletRect.bottom > EnemyRect.top
+      playerbulletRect.left < EnemyRect.right &&
+      playerbulletRect.right > EnemyRect.left &&
+      playerbulletRect.top < EnemyRect.bottom &&
+      playerbulletRect.bottom > EnemyRect.top
     )
   }
 
@@ -125,7 +132,7 @@ class Player {
         this.bullet.style.display = 'none'; // Hide bullet
         clearInterval(intervalId);
       }
-    }, 500/60); // Runs approximately 60 times per second
+    }, 1000/60); // Runs approximately 60 times per second
 
   }
 }

@@ -14,7 +14,7 @@ class Enemy {
     GRASS_WIDTH
     this.positionBulletX = this.positionX;
     this.positionBulletY = this.positionY;
-    this.speed = 20
+    this.speed = 1
     this.directionX = 0;
     this.directionY = 0;
     this.element = document.createElement('img')
@@ -111,6 +111,8 @@ class Enemy {
 
   }*/
     shootAtPlayer(Player) {
+      if (this.bullet.style.display === 'block') return; // Prevent spamming
+
       // if i didnt get the dom values, it was not possible to shoot on time at the player direction
       const playerPosition = Player.getPlayerPosition();
       const playerCenterX = playerPosition.x + Player.width / 2; ;
@@ -153,7 +155,7 @@ class Enemy {
           this.bullet.style.display = 'none'; // Hide bullet
           clearInterval(intervalId); // Stop movement
         }
-      }, 16); // Runs approximately 60 times per second
+      }, 1000/60); // Runs approximately 60 times per second
     }
     getEnemyPosition() {
       return {
@@ -162,14 +164,14 @@ class Enemy {
       };
     }
     didCollide(Player) {
-      const enemyRect = this.element.getBoundingClientRect()
-      const bulletRect = Player.bullet.getBoundingClientRect()
+      const enemyBulletRect = this.bullet.getBoundingClientRect()
+      const PlayerRect = Player.element.getBoundingClientRect()
       
       return (
-        bulletRect.left < enemyRect.right &&
-        bulletRect.right > enemyRect.left &&
-        bulletRect.top < enemyRect.bottom &&
-        bulletRect.bottom > enemyRect.top
+        enemyBulletRect.left < PlayerRect.right &&
+        enemyBulletRect.right > PlayerRect.left &&
+        enemyBulletRect.top < PlayerRect.bottom &&
+        enemyBulletRect.bottom > PlayerRect.top
       )
     }
   }

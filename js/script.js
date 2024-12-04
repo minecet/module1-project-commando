@@ -90,8 +90,10 @@ window.onload = function () {
       event.code === 'KeyD' ||
       event.code === 'KeyS' 
     ) {
+
       game.player.directionX = 0
       game.player.directionY = 0
+
 
 
     }

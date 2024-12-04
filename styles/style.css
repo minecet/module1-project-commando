@@ -57,11 +57,18 @@ body {
 
 body button {
   font-size: 30px;
-  background-color: #870007;
+  background-color: black;
   color: #fff;
-  padding: 20px 40px;
+  padding: 10px 20px;
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.bullet {
+  border: 1px solid blue;
+}
+.enemy {
+  border: 1px solid red;
 }
