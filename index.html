@@ -17,6 +17,8 @@
         <p>Use the all 4 arrows to move the player in all directions</p>
         <img src="./images/arrows.png" alt="" class="arrows-img" />
         <p>Use A to shoot towards left, W for upwards, D to the right, and S for downwards</p>
+        <img src="./images/buttons.png" alt="" class="buttons-img" />
+
       </div>
       <div id="game-container">
         <div>
@@ -29,11 +31,16 @@
       </div>
 
       <!-- #game-end is initially hidden using CSS style display: none -->
-      <div id="game-end">
+      <div id="game-end-lose">
         <img src="images/commandoScreen.png" alt="" class="logo-img" />
         <h1>Game Over</h1>
-        <br />
-        <button id="restart-button">Restart</button>
+        <button id="restart-button1">Restart</button>
+
+      </div>
+      <div id="game-end-win">
+        <img src="images/commandoScreen.png" alt="" class="logo-img" />
+        <h1>You Won!</h1>
+        <button id="restart-button2">Restart</button>
       </div>
     </main>
 

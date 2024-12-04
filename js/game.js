@@ -6,7 +6,8 @@ class Game {
   constructor() {
     this.gameIntro = document.getElementById('game-intro')
     this.gameScreen = document.getElementById('game-screen')
-    this.endScreen = document.getElementById('game-end')
+    this.endScreen1 = document.getElementById('game-end-lose') // will be changed depending on game result
+    this.endScreen2 = document.getElementById('game-end-win') // will be changed depending on game result
     this.scoreElement = document.getElementById('score')
     this.livesElement = document.getElementById('lives')
     this.width = gameScreenWidth
@@ -25,7 +26,9 @@ class Game {
 
   start() {
     this.gameIntro.style.display = 'none'
-    this.endScreen.style.display = 'none'
+    this.endScreen1.style.display = 'none'
+    this.endScreen2.style.display = 'none'
+
     this.gameScreen.style.display = 'block'
 
     this.gameScreen.style.width = `${this.width}px`
@@ -36,12 +39,26 @@ class Game {
     this.gameLoopPlayer()
    // this.gameLoopEnemy()
   }
-
+  endGame(){
+    clearInterval(this.gameLoopPlayerId);
+    this.player.element.remove();
+    this.enemies.forEach((enemy) => enemy.element.remove());
+    this.gameScreen.style.display = 'none';
+    this.scoreElement.innerText = this.score;
+    this.livesElement.innerText = this.lives;
+ }
 
  // tried to separate player and enemy movements into separate intervals, didn't work
  
 gameLoopPlayer() {
   this.gameLoopPlayerId = setInterval(() => {
+
+    if(!this.Gamover && this.player.element.style.top == `0px` ){
+      this.endGame();
+      this.endScreen = document.getElementById('game-end-win');
+      this.endScreen.style.display = 'block';
+    }
+
     this.currentFrame += 1;
     this.scoreElement.innerText = this.score;
     this.livesElement.innerText = this.lives;
@@ -74,7 +91,6 @@ gameLoopPlayer() {
              this.livesElement.innerText = this.lives;
              this.isGameOver = true;
            }
-           break;
          } 
     }
  //   this.enemies.forEach((currentEnemy, index) => {
@@ -108,12 +124,8 @@ gameLoopPlayer() {
 
     // Handle game over
     if (this.isGameOver) {
-      clearInterval(this.gameLoopPlayerId);
-      this.player.element.remove();
-      this.enemies.forEach((enemy) => enemy.element.remove());
-      this.gameScreen.style.display = 'none';
-      this.scoreElement.innerText = this.score;
-      this.livesElement.innerText = this.lives;
+      this.endGame();
+      this.endScreen = document.getElementById('game-end-lose');
       this.endScreen.style.display = 'block';
     }
   
@@ -122,4 +134,6 @@ gameLoopPlayer() {
   }, 1000 / 60); // Run at 60 FPS
   
 }
+
+
 }

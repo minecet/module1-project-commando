@@ -1,6 +1,7 @@
 window.onload = function () {
   const startButton = document.getElementById('start-button')
-  const restartButton = document.getElementById('restart-button')
+  const restartButton1 = document.getElementById('restart-button1')
+  const restartButton2 = document.getElementById('restart-button2')
 
   let game
 
@@ -14,9 +15,13 @@ window.onload = function () {
     startGame()
   })
 
-  restartButton.addEventListener('click', function () {
+  restartButton1.addEventListener('click', function () {
     startGame()
   })
+  restartButton2.addEventListener('click', function () {
+    startGame()
+  })
+
 
   document.addEventListener('keydown', event => {
     if (event.code === 'ArrowLeft') {
