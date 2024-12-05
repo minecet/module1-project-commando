@@ -23,4 +23,4 @@ HTML, CSS and JS based logic and DOM manipulation of all. Characters and bullet 
 - Presentation
   https://prezi.com/view/yeyZwUFQbV8knBOBYkhS/
 - Deployment
-  [[minecet.github.io/module1-project-commando/](https://minecet.github.io/module1-project-commandoMeetsMarsAttacks/)](https://github.com/minecet/module1-project-commandoMeetsMarsAttacks)
+ https://minecet.github.io/module1-project-commandoMeetsMarsAttacks
