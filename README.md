@@ -23,4 +23,4 @@ Replay options screen with the result
 - Presentation
   https://prezi.com/view/yeyZwUFQbV8knBOBYkhS/
 - Deployment
-  [minecet.github.io/module1-project-commando/](https://minecet.github.io/module1-project-commandoMeetsMarsAttacks/)
+  [[minecet.github.io/module1-project-commando/](https://minecet.github.io/module1-project-commandoMeetsMarsAttacks/)](https://github.com/minecet/module1-project-commandoMeetsMarsAttacks)
