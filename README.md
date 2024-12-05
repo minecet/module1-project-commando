@@ -9,7 +9,7 @@
 - Martians, aka enemies, can appear anywhere within the bounds of the screen. Keep moving, they will always target your last position
 - Spaceship is located randomly on the top of the screen. If you get close by enough, it is success
 # Backlog
-Introducing sounds would be great to keep the player aware of being shot
+Introducing sounds would be great to keep the player aware of being shot. Also a highlight on the lives left
 Nonetheless, adding animation for the enemy shot and removing the bullet once the player got shot help a bit!
 # Tech stack
 HTML, CSS and JS based logic and DOM manipulation of all. Characters and bullet shootings are all image based
