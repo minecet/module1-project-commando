@@ -14,9 +14,9 @@ Nonetheless, adding animation for the enemy shot and removing the bullet once th
 # Tech stack
 HTML, CSS and JS based logic and DOM manipulation of all. Characters and bullet shootings are all image based
 # States
-Start screen
-Game screen 
-Replay options screen with the result
+- Start screen
+- Game screen 
+- Replay options screen with the result
 # Extra links
 - Trello
   https://trello.com/invite/b/674cbe2d2b332fc4aa27edfe/ATTI0e4477c99ae96907a500f84bfb6032c7EF030E52/module1-gamecommandoturnedtomarsattacks
