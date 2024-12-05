@@ -41,32 +41,24 @@ window.onload = function () {
       game.player.directionY = 1
 
     }
+    // the rest calls the shootAtEnemy function by passing the desired X and Y direction, similar to the arrow button directions
     if (event.code === 'KeyA') {
       // shoot towards left of the player
-      //game.player.directionX = -1;
-      //game.player.directionY = parseFloat(game.player.element.style.top) || game.player.positionY;
       game.player.shootAtEnemy(-1, 0);
 
     }
     if (event.code === 'KeyW') {
       // shoot towards upperside of the player
-      //game.player.directionX = parseFloat(game.player.element.style.left) || game.player.positionX;
-     // game.player.directionY = -1
       game.player.shootAtEnemy(0, -1);
 
     }
     if (event.code === 'KeyD') {
       // shoot towards rightside of the player
-      //game.player.directionX = 1;
-      //game.player.directionY = parseFloat(game.player.element.style.top)|| game.player.positionY;
-      //console.log(game.player.directionY )
       game.player.shootAtEnemy(1, 0);
  
     }
     if (event.code === 'KeyS') {
       // shoot towards downwards
-     // game.player.directionX = parseFloat(game.player.element.style.left) || game.player.positionX;
-     // game.player.directionY = 1;
       game.player.shootAtEnemy(0, 1);
 
     }

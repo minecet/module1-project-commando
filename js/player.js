@@ -1,4 +1,5 @@
 class Player {
+  // each game has a single player with an astronout image and bullet image. 
   constructor(gameScreen) {
     this.gameScreen = gameScreen
     this.width = 60
@@ -9,24 +10,17 @@ class Player {
     this.directionY = 0
     this.speed = 10
     this.element = document.createElement('img')
-
     this.element.src = 'images/astronaut.png'
     this.element.style.position = 'absolute'
     this.element.style.width = `${this.width}px`
     this.element.style.height = `${this.height}px`
     this.element.style.left = `${this.positionX}px`
     this.element.style.top = `${this.positionY}px`
-
     this.gameScreen.appendChild(this.element)
-
-        // Initialize bullet properties
-    //this.bullet = document.createElement('img');
-   // this.bullet.src = '../images/bullet.png';
+    // Initialize bullet properties
    this.bullet = document.createElement('img');
    this.bullet.src = 'images/bomb_gray.png';
    this.bullet.id= "bullet" + this.id;
-    //this.element.style.borderRadius = "50%";
-    //this.element.style.backgroundColor = "tomato";
     this.bullet.style.position = 'absolute';
     this.bullet.style.width = '30px';
     this.bullet.style.height = '30px';
@@ -37,6 +31,7 @@ class Player {
     this.collisionCooldown = false;
 
   }
+  // to avoid multiple life deduction if the player is shot by an enemy, a cooldown is implemented
   startCollisionCooldown() {
     this.collisionCooldown = true;
     setTimeout(() => {
@@ -45,11 +40,11 @@ class Player {
   }
   updatePosition() {
     this.positionX += this.speed * this.directionX
-    if (this.positionX < 0 + GRASS_WIDTH) {
-      this.positionX = 0 + GRASS_WIDTH
+    if (this.positionX < 0 + 50) {
+      this.positionX = 0 + 50
     }
-    if (this.positionX > this.gameScreen.clientWidth - this.width - GRASS_WIDTH) {
-      this.positionX = this.gameScreen.clientWidth - this.width - GRASS_WIDTH
+    if (this.positionX > this.gameScreen.clientWidth - this.width - 50) {
+      this.positionX = this.gameScreen.clientWidth - this.width - 50
     }
 
     this.positionY += this.speed * this.directionY
@@ -66,7 +61,7 @@ class Player {
     this.element.style.left = `${this.positionX}px`
     this.element.style.top = `${this.positionY}px`
   }
-
+  //get active position of player in the DOM 
   getPlayerPosition() {
       return {
         x: parseFloat(this.element.style.left), // Get current left position
@@ -74,40 +69,26 @@ class Player {
       };
     }
     
-  
-
+  // check if the player bullet collides with an enemy
   didCollide(Enemy) {
     const playerbulletRect = this.bullet.getBoundingClientRect()
     const EnemyRect = Enemy.element.getBoundingClientRect()
-    return (
-      playerbulletRect.left < EnemyRect.right &&
-      playerbulletRect.right > EnemyRect.left &&
-      playerbulletRect.top < EnemyRect.bottom &&
-      playerbulletRect.bottom > EnemyRect.top
-    )
+
+    return playerbulletRect.left < EnemyRect.right &&
+    playerbulletRect.right > EnemyRect.left &&
+    playerbulletRect.top < EnemyRect.bottom &&
+    playerbulletRect.bottom > EnemyRect.top
   }
 
   shootAtEnemy(directionX, directionY) {
-    // if i didnt get the dom values, it was not possible to shoot on time at the player direction
-   // const enemyPosition = Enemy.getEnemyPosition();
-    //const enemyCenterX = enemyPosition.x + Enemy.width / 2; ;
-    //const enemyCenterY = enemyPosition.y + Enemy.height / 2;;
-    if (this.bullet.style.display === 'block') return; // Prevent spamming
-
-    // Initialize bullet position
+    if (this.bullet.style.display === 'block') return; // Prevent spamming, important to prevent a second bullet trigger while first one is still active
+    // Initialize bullet position, which is the player position
     this.bullet.style.left = `${this.positionX + this.width / 2}px`;
     this.bullet.style.top = `${this.positionY + this.height / 2}px`;
     this.bullet.style.display = 'block';
-  
-    //const deltaX =  enemyCenterX - this.positionX;
-    //const deltaY =  enemyCenterY - this.positionY;
-    //const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-  // finding the direction was difficult
-    //const directionX = deltaX / distance;
-    //const directionY = deltaY / distance;
-    //const directionX = this.directionX;
-    //const directionY = this.directionY;
+
     const bulletSpeed = 5; // Adjust as needed
+    // start moving bullet in the desired enemy direction passed as parameter, this is triggered by keyDown events defined in script.js
     const intervalId = setInterval(() => {
 
       const bulletPosX = parseFloat(this.bullet.style.left) ;
@@ -122,7 +103,7 @@ class Player {
       // Debugging
     //  console.log(`Bullet position: (${newPosX}, ${newPosY})`);
   
-      // Stop bullet if out of bounds
+      // hide bullet if out of bounds
       if (
         newPosX < 0 ||
         newPosY < 0 ||
