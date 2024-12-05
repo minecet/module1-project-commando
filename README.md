@@ -2,7 +2,7 @@
 # Description
   The js based game is inspried by the 80s retro game Commando that I got inspired of while trying to implement a game with moving DOM elements and while seeing the naive image croppings I got from the original game, I saw it looked like a planet surface and wanted to introduce the Mars Attacks characters as icons of the enemy and the player
 # Main Functionalities
-- Use the arrow keys to move the player towards the spaceship, which is the successful and of the game
+- Use the arrow keys to move the player towards the spaceship, which is the successful end of the game
 - Of course, the challenge is avoiding getting shot by the randomly appearing Martians, meanwhile killing as much as you can to increase your score (+50 per each) and reaching the spaceship to pass this level
 - You can shoot with the keys A-W-D-S in  a similar logic to left -up - down - right arrow keys. Meaning move as fast as you can and aim at any Martian in 90 degrees aim as fast as you can! 
 - If you shoot them first, you see the Martian disappear with an effect even! If you get shot, your lives count reduces. Beware, you have only 3 of them before you reach the spaceship to escape
